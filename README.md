@@ -1,3 +1,5 @@
+permalink: https://currencies-application.herokuapp.com/
+
 # Currencies
 Currencies webpage with jQuery, Ajax and Bootstrap 
 
