@@ -11,9 +11,6 @@
         //This query string is used for the more info search
         let moreInfoQueryString = "/coins";
 
-        //This query string is used for an alternative URL
-        // let allCoinsQueryString = "/coins/list"
-
         // creating a More Info Cache to optimize results of more info search
         let moreInfoCache = new Map();
         // Creating a map where the keys are the symbol of the coin in order to optimize the search (O(1)) of a coin  beyond the 100 coins cap//Coins Cache
@@ -510,7 +507,7 @@
             header3.html("Enjoy")
             mainDivInfo.append(header3);
             let image = $("<img>");
-            image.attr("src", "me4.jpg");
+            image.attr("src", "./images/me4.jpg");
             image.attr("id", "dogImage");
             mainDivInfo.append(image);
 
@@ -627,19 +624,19 @@
             let allCurrenciesUrl = DOMAIN + queryString;
             if (coinsMapWithSymbolAsId.size == 0) {
                 $.get(allCurrenciesUrl).then(function (data) {
-                        // let coinsArray = data
-                        // This is used for the alternative URL in order to not slow the website
-                        let coinsArray = data.slice(0, 100);
-                        // Updating the coinsArray symbol to lower case for easier search
-                        coinsArray = turnSymbolOfArrayToLowerCase(coinsArray);
-                        // Creating a map with id as key and another map with symbol as key
-                        buildMapFromArrayWithSymbolAsKey(coinsArray);
-                        buildMapFromArrayWithIdlAsKey(coinsArray);
-                        //Resetting all elements on the user interaface
-                        UIReset();
-                        // a function that creates the card elements on page with the relevant details
-                        showCoinsOnUI();
-                    })
+                    // let coinsArray = data
+                    // This is used for the alternative URL in order to not slow the website
+                    let coinsArray = data.slice(0, 100);
+                    // Updating the coinsArray symbol to lower case for easier search
+                    coinsArray = turnSymbolOfArrayToLowerCase(coinsArray);
+                    // Creating a map with id as key and another map with symbol as key
+                    buildMapFromArrayWithSymbolAsKey(coinsArray);
+                    buildMapFromArrayWithIdlAsKey(coinsArray);
+                    //Resetting all elements on the user interaface
+                    UIReset();
+                    // a function that creates the card elements on page with the relevant details
+                    showCoinsOnUI();
+                })
                     .catch(function (error) {
                         alert("OOPS something Wrong Happened , Please refresh the website or try later to upload it ");
                         console.log(error);
@@ -665,19 +662,19 @@
         // A function that get more information data from the URL
         function getMoreInfoDataFromURL(allCurrentCurrencyUrl, content, id) {
             $.get(allCurrentCurrencyUrl).then(function (data) {
-                    let imageURL = data.image.small;
-                    let USDPrice = data.market_data.current_price.usd;
-                    let EURPrice = data.market_data.current_price.eur;
-                    let ILSPrice = data.market_data.current_price.ils;
-                    // Creating an object with the relevant information and adding it to the cache
-                    let moreInfoOjbect = moreInfoObjectConstructor(imageURL, USDPrice, EURPrice, ILSPrice);
-                    moreInfoCache.set(id, moreInfoOjbect);
-                    //Calling a function that deletes the cache with this id after 2 minutes
-                    deleteCoinCacheAfterTwoMinutes(id)
-                    //Calling a function that displays the more information on the UI
-                    showMoreInfoOfCurrentCurrencyOnUI(moreInfoOjbect, content);
-                    console.log(moreInfoCache)
-                })
+                let imageURL = data.image.small;
+                let USDPrice = data.market_data.current_price.usd;
+                let EURPrice = data.market_data.current_price.eur;
+                let ILSPrice = data.market_data.current_price.ils;
+                // Creating an object with the relevant information and adding it to the cache
+                let moreInfoOjbect = moreInfoObjectConstructor(imageURL, USDPrice, EURPrice, ILSPrice);
+                moreInfoCache.set(id, moreInfoOjbect);
+                //Calling a function that deletes the cache with this id after 2 minutes
+                deleteCoinCacheAfterTwoMinutes(id)
+                //Calling a function that displays the more information on the UI
+                showMoreInfoOfCurrentCurrencyOnUI(moreInfoOjbect, content);
+                console.log(moreInfoCache)
+            })
 
                 .catch(function (error) {
                     alert("OOPS something Wrong Happened , Please refresh the website or try later to upload it ");
