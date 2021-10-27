@@ -12,6 +12,8 @@ The data is fetched from the CoinGecko website: https://www.coingecko.com/en/api
 
 The project was built with javascript, jquery, html and css
 
+In the future it will be updated in a modular form and perhaps I'll use a framework instead of javascript vanilla
+
 ![image](https://user-images.githubusercontent.com/62177111/138848501-07684860-3f7f-4fb9-845a-bc092d834003.png)
 ![image](https://user-images.githubusercontent.com/62177111/138848617-bd0545b2-7f69-4579-b265-2da6bf576828.png)
 ![image](https://user-images.githubusercontent.com/62177111/138848738-58b03649-6cbe-446b-a9b2-333825182193.png)
